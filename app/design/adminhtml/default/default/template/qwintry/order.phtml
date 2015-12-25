@@ -1,0 +1,43 @@
+<?php if (!Mage::helper('altteam_qwintry')->checkLabel($this->getOrder()->getIncrementId())): ?>
+    <form id="qwintry_form" method="post" action="<?php echo $this->getSaveUrl() ?>">
+        <?php echo $this->getBlockHtml('formkey') ?>
+
+        <fieldset>
+            <input type="hidden" name="qwintry_data[order_id]"
+                   value="<?php echo $this->getOrder()->getIncrementId(); ?>"/>
+<span class="field-row">
+        <label for="weight"><?php echo $this->__('Weight (lbs)') ?> </label>
+        <input name="qwintry_data[box_weight]" id="qwintry_data[weight]" value="" class="input-text" type="text"/>
+    </span>
+
+<span class="field-row">
+        <label for="height"><?php echo $this->__('Height (inches)') ?> </label>
+        <input name="qwintry_data[box_height]" id="qwintry_data[height]" value="" class="input-text" type="text"/>
+    </span>
+
+   <span class="field-row">
+        <label for="width"><?php echo $this->__('Width (inches)') ?> </label>
+        <input name="qwintry_data[box_width]" id="qwintry_data[width]" value="" class="input-text" type="text"/>
+     </span>
+
+   <span class="field-row">
+        <label for="length"><?php echo $this->__('Length (inches)') ?> </label>
+        <input name="qwintry_data[box_length]" id="qwintry_data[length]" value="" class="input-text" type="text"/>
+      </span>
+
+            <div class="f-right">
+                <?php echo $this->getChildHtml('submit_button') ?>
+            </div>
+        </fieldset>
+        <script type="text/javascript">
+            function submitQwintry() {
+                submitAndReloadArea($('qwintry_form').parentNode, '<?php echo $this->getSubmitUrl() ?>')
+            }
+            if ($('submit_qwintry_button')) {
+                $('submit_qwintry_button').observe('click', submitQwintry);
+            }
+        </script>
+    </form>
+<?php else: ?>
+    <a href="<?php echo Mage::getStoreConfig(Mage_Core_Model_Url::XML_PATH_SECURE_URL) . 'media/qwintry/labels/' . $this->getOrder()->getIncrementId() . '.pdf'; ?>"><?php echo $this->__("Download label (PDF)") ?></a>
+<?php endif; ?>

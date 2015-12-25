@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <checkout_onepage_index>
+        <reference name='checkout.onepage.shipping_method.available'>
+            <action method='setTemplate'>
+                <template>qwintry/checkout/onepage/shipping_method/available.phtml</template>
+            </action>
+        </reference>
+        <reference name='checkout.onepage.shipping_method'>
+            <action method='setTemplate'>
+                <template>qwintry/checkout/onepage/shipping_method.phtml</template>
+            </action>
+        </reference>
+    </checkout_onepage_index>
+    <checkout_onepage_shippingmethod>
+        <reference name='root'>
+            <action method='setTemplate'>
+                <template>qwintry/checkout/onepage/shipping_method/available.phtml</template>
+            </action>
+        </reference>
+    </checkout_onepage_shippingmethod>
+</layout> 

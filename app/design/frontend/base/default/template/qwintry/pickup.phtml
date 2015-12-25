@@ -1,0 +1,32 @@
+<?php
+$_code = $this->getMethodCode();
+$carrier = $this->getMethodInstance();
+$pickupData = $this->getQuote()->getPickupData();
+$_rate = $this->getRate();
+if (!isset($pickupData['store'])) {
+    $pickupData['store'] = -1;
+}
+if (!isset($pickupData['name'])) {
+    $pickupData['name'] = '';
+}
+$pickup_points = $carrier->getPickupPoints();
+?>
+
+<ul class="form-list" id="shipping_form_<?php echo $_rate->getCode() ?>" style="display:none;">
+    <li>
+        <label for="<?php echo $_code ?>_store" class="required"><em>*</em><?php echo $this->__('Pickup point:') ?>
+        </label>
+        <span class="input-box">
+            <select class="required-entry" name="shipping_pickup[store]" onchange="pickupPoint.updateStore();"
+                    style="width: 358px;">
+                <?php foreach ($pickup_points as $_point): ?>
+                    <option value='<?php echo $_point['code']; ?>' <?php if ($pickupData['store'] == $_point['code']) {
+                        echo "selected=selected";
+                    } ?>><?php echo $_point['name']; ?></option>
+                <?php endforeach; ?>
+            </select>
+        </span>
+        <a target="_blank"
+           href="http://logistics.qwintry.com/cities"><?php echo $this->__("View all pickup points on map here") ?></a>
+    </li>
+</ul>
